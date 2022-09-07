@@ -1,0 +1,30 @@
+.hero{
+    .rightImg{
+        margin-top: -45px;
+    }
+    
+}
+
+.accordList{
+    li{
+        cursor: pointer;
+    }
+    .active{
+        color: rgb(249 115 22);
+        &::before{
+            width: 100%;
+        }
+    }
+}
+
+.productWrapper{
+    .hoverImage{
+        transition: all .5s ease-in-out;
+    }
+    &:hover{
+        .hoverImage{
+            transform: scale(1.1) rotate(3deg);
+            opacity: 1;
+        }
+    }
+}
