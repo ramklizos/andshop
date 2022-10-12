@@ -1,0 +1,32 @@
+.productWrapper{
+    .hoverImage{
+        transition: all .5s ease-in-out;
+    }
+    &:hover{
+        .hoverImage{
+            transform: scale(1.1) rotate(3deg);
+            opacity: 1;
+        }
+    }
+
+    .actions{
+        & > span{
+            &:not(:first-child){
+                opacity: 0;
+                transform: translateY(25px);
+                transition: 250ms ease-in-out;
+            }
+        }
+    }
+
+    &:hover{
+        .actions{
+            & > span{
+                &:not(:first-child){
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+}

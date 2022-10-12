@@ -17,14 +17,19 @@
     }
 }
 
-.productWrapper{
-    .hoverImage{
-        transition: all .5s ease-in-out;
+
+
+.todayDealSwiper{
+    .swiper-wrapper{
+        padding-bottom: 55px;
     }
-    &:hover{
-        .hoverImage{
-            transform: scale(1.1) rotate(3deg);
-            opacity: 1;
+
+    .swiper-pagination{
+        & > .swiper-pagination-bullet{
+            &.swiper-pagination-bullet-active{
+                background-color: #000;
+                opacity: .75;
+            }
         }
     }
 }
