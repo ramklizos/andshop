@@ -1,6 +1,6 @@
 import "./component-style/home.scss";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductBox from "./common/ProductBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -9,158 +9,198 @@ import "swiper/css/pagination";
 import BlogBox from "./common/BlogBox";
 
 const Home = () => {
+    const productData = [
+        {
+            id: 1,
+            labels: "Trending",
+            category: "Trending",
+            img: "/images/products/product1.7190443a.png",
+            hover_img: "/images/products/product10.d71c44ec.png",
+            title: "Green Dress For Woman",
+            price: 38,
+            description:
+                "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. \n        The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.",
+            rating: {
+                rate: 3.9,
+                count: 30,
+            },
+            color: [
+                {
+                    color: "green",
+                    img: "/images/products/product8.32e12a75.png",
+                    quantity: 1,
+                },
+                {
+                    color: "red",
+                    img: "/images/products/product9.60333e3e.png",
+                    quantity: 1,
+                },
+                {
+                    color: "blue",
+                    img: "/images/products/product7.6533a8ae.png",
+                    quantity: 1,
+                },
+            ],
+        },
+        {
+            id: 2,
+            labels: "45% OFF",
+            category: "fashion",
+            img: "/images/products/product2.57e4309e.png",
+            hover_img: "/images/products/product9.60333e3e.png",
+            title: "T-Shirt For Men",
+            price: 72,
+            description:
+                "Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n         Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus.",
+            rating: {
+                rate: 3.3,
+                count: 80,
+            },
+            color: [
+                {
+                    color: "green",
+                    img: "/images/products/product6.f19b14e6.png",
+                    quantity: 1,
+                },
+                {
+                    color: "red",
+                    img: "/images/products/product10.d71c44ec.png",
+                    quantity: 1,
+                },
+                {
+                    color: "blue",
+                    img: "/images/products/product5.65927e42.png",
+                    quantity: 1,
+                },
+            ],
+        },
+        {
+            id: 3,
+            labels: "50% OFF",
+            category: "fashion",
+            img: "/images/products/product3.1d2f5e96.png",
+            hover_img: "/images/products/product7.6533a8ae.png",
+            title: "V-Neck Dress",
+            price: 34,
+            description:
+                "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in \n        faucibus orci luctus et ultrices posuere cubilia Curae;",
+            rating: {
+                rate: 4.9,
+                count: 156,
+            },
+            color: [
+                {
+                    color: "green",
+                    img: "/images/products/product6.f19b14e6.png",
+                    quantity: 1,
+                },
+                {
+                    color: "red",
+                    img: "/images/products/product7.6533a8ae.png",
+                    quantity: 1,
+                },
+                {
+                    color: "blue",
+                    img: "/images/products/product8.32e12a75.png",
+                    quantity: 1,
+                },
+            ],
+        },
+        {
+            id: 4,
+            labels: "Hot",
+            category: "Hot",
+            img: "/images/products/product4.0d1ab934.png",
+            hover_img: "/images/products/product6.f19b14e6.png",
+            title: "Maxi Dress",
+            price: 43,
+            description:
+                "Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vestibulum ac diam sit \n        amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
+            rating: {
+                rate: 1.9,
+                count: 190,
+            },
+            color: [
+                {
+                    color: "green",
+                    img: "/images/products/product3.1d2f5e96.png",
+                    quantity: 1,
+                },
+                {
+                    color: "red",
+                    img: "/images/products/product9.60333e3e.png",
+                    quantity: 1,
+                },
+                {
+                    color: "blue",
+                    img: "/images/products/product5.65927e42.png",
+                    quantity: 1,
+                },
+            ],
+        },
+        {
+            id: 5,
+            labels: "Upcoming",
+            category: "Upcoming",
+            img: "/images/products/product5.65927e42.png",
+            hover_img: "/images/products/product1.7190443a.png",
+            title: "Fit-Flare Dress",
+            price: 52,
+            description:
+                "Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n        Vivamus suscipit tortor eget felis porttitor volutpat. Nulla quis lorem ut libero malesuada feugiat.",
+            rating: {
+                rate: 3.6,
+                count: 20,
+            },
+            color: [
+                {
+                    color: "green",
+                    img: "/images/products/product10.d71c44ec.png",
+                    quantity: 1,
+                },
+                {
+                    color: "red",
+                    img: "/images/products/product9.60333e3e.png",
+                    quantity: 1,
+                },
+                {
+                    color: "blue",
+                    img: "/images/products/product2.57e4309e.png",
+                    quantity: 1,
+                },
+            ],
+        }
+    ]
+
     const [products] = useState({
-        products: [
-            {
-                id: 1,
-                labels: {
-                    type: "new",
-                    text: "Trending",
-                },
-                category: "New Arrival",
-                img: "/images/products/product1.7190443a.png",
-                hover_img: "/images/products/product10.d71c44ec.png",
-                title: "Green Dress For Woman",
-                price: 38,
-                description:
-                    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. /n The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.",
-                rating: { count: 30, rate: 3.9 },
-                color: [
-                    {
-                        color: "green",
-                        img: "/static/media/product8.32e12a75.png",
-                    },
-                    {
-                        color: "red",
-                        img: "/static/media/product9.60333e3e.png",
-                    },
-                    {
-                        color: "blue",
-                        img: "/static/media/product7.6533a8ae.png",
-                    },
-                ],
-            },
-            {
-                id: 2,
-                labels: {
-                    type: "sale",
-                    text: "45% OFF",
-                },
-                category: "Trending",
-                img: "/images/products/product2.57e4309e.png",
-                hover_img: "/images/products/product9.60333e3e.png",
-                title: "T-Shirt For Men",
-                price: 72,
-                description:
-                    "Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus.",
-                rating: { count: 80, rate: 3.9 },
-                color: [
-                    {
-                        color: "green",
-                        img: "/static/media/product8.32e12a75.png",
-                    },
-                    {
-                        color: "red",
-                        img: "/static/media/product9.60333e3e.png",
-                    },
-                    {
-                        color: "blue",
-                        img: "/static/media/product7.6533a8ae.png",
-                    },
-                ],
-            },
-            {
-                id: 3,
-                labels: {
-                    type: "sale",
-                    text: "50% OFF",
-                },
-                category: "Best Sellers",
-                img: "/images/products/product3.1d2f5e96.png",
-                hover_img: "/images/products/product7.6533a8ae.png",
-                title: "V-Neck Dress",
-                price: 34,
-                description:
-                    "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;",
-
-                rating: { count: 156, rate: 4.9 },
-                color: [
-                    {
-                        color: "green",
-                        img: "/static/media/product6.f19b14e6.png",
-                        quantity: 1,
-                    },
-                    {
-                        color: "red",
-                        img: "/static/media/product7.6533a8ae.png",
-                        quantity: 1,
-                    },
-                ],
-            },
-            {
-                id: 4,
-                labels: {
-                    type: "hot",
-                    text: "Hot",
-                },
-                category: "Featured",
-                img: "/images/products/product4.0d1ab934.png",
-                hover_img: "/images/products/product6.f19b14e6.png",
-                title: "Maxi Dress",
-                price: 43,
-                description:
-                    "Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vestibulum ac diam sit  amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
-
-                rating: { count: 190, rate: 1.9 },
-                color: [
-                    {
-                        color: "green",
-                        img: "/static/media/product3.1d2f5e96.png",
-                        quantity: 1,
-                    },
-                    {
-                        color: "red",
-                        img: "/static/media/product9.60333e3e.png",
-                        quantity: 1,
-                    },
-                ],
-            },
-            {
-                id: 5,
-                labels: {
-                    type: "new",
-                    text: "Upcoming",
-                },
-                category: "On Sale",
-                img: "/images/products/product5.65927e42.png",
-                hover_img: "/images/products/product1.7190443a.png",
-                title: "Fit-Flare Dress",
-                price: 52,
-                description:
-                    "Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Vivamus suscipit tortor eget felis porttitor volutpat. Nulla quis lorem ut libero malesuada feugiat.",
-
-                rating: { count: 20, rate: 3.6 },
-                color: [
-                    {
-                        color: "green",
-                        img: "/static/media/product10.d71c44ec.png",
-                        quantity: 1,
-                    },
-                    {
-                        color: "red",
-                        img: "/static/media/product9.60333e3e.png",
-                        quantity: 1,
-                    },
-                ],
-            },
-        ],
+        products: productData,
     });
 
-    const [productCats, setProductCats] = useState([])
+    const [hotProducts, setHotProducts] = useState(productData);
+    const [hotproductCats, sethotProductCats] = useState(['All'])
+    const [hotProActive, setProActive] = useState(0);
 
-    useState(()=>{
-setProductCats([...new Set(products.products.map(q => q.category))])
+    useEffect(()=>{
+        sethotProductCats([...hotproductCats,...new Set(hotProducts.map(item => item.category))])
+        return () => {
+            sethotProductCats([]);
+
+        };
     },[])
+
+
+    function hotProductCatClickHandler(index, category){
+        setProActive(index);
+        
+        const filterProduct = productData.filter((item)=>{           
+            return item.category === category            
+        })
+
+        setHotProducts(filterProduct.length>0 ? filterProduct : productData)
+    }
+
+
+
     return (
         <>
             <section
@@ -219,7 +259,7 @@ setProductCats([...new Set(products.products.map(q => q.category))])
                                 </h3>
                                 <div className="mt-7">
                                     <Link
-                                        to="/"
+                                        to="/shop"
                                         className="duration-200 px-7 py-3 bg-gray-900 hover:bg-white hover:text-gray-900 text-white text-xs border border-gray-900"
                                     >
                                         SHOP NOW
@@ -348,25 +388,14 @@ setProductCats([...new Set(products.products.map(q => q.category))])
                         </p>
                     </div>
                     <ul className="flex justify-center uppercase accordList">
-                        <li className="active relative pb-2 mx-5 before:absolute before:block before:border-b-2 before:border-orange-500 before:bottom-0 before:left-0 before:w-0 duration-300">
-                            <span>New arrival</span>
-                        </li>
-                        <li className="px-5">
-                            <span>Trending</span>
-                        </li>
-                        <li className="px-5">
-                            <span>Best Sellers</span>
-                        </li>
-                        <li className="px-5">
-                            <span>Featured</span>
-                        </li>
-                        <li className="px-5">
-                            <span>On Sale</span>
-                        </li>
+
+                        {hotproductCats.map((cats,index)=><li onClick={ ()=>{ hotProductCatClickHandler(index, cats) } } className={`relative pb-2 mx-5 before:absolute before:block before:border-b-2 before:border-orange-500 before:bottom-0 before:left-0 before:w-0 before:duration-300 ${hotProActive == index && 'active'}  `} key={index}>
+                            <span>{cats}</span>
+                        </li>)}
                     </ul>
 
                     <div className="flex flex-wrap -m-4">
-                        {products.products.map((item, index) => (
+                        {(hotProducts && hotProducts.length>0) && hotProducts.map((item, index) => (
                             <div className="px-4 w-1/4" key={index}>
                                 <ProductBox pdata={item} />
                             </div>

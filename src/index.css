@@ -5,4 +5,23 @@
 body{
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
+  
+}
+
+select{
+  -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+
+  background-image: url('/public/images/down-arrow.png');
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 94%;
+  background-size: 16px;
+}
+
+select:hover,
+select:focus{
+  box-shadow: none;
+  outline: none;
 }

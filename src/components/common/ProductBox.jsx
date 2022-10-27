@@ -4,14 +4,14 @@ import "../component-style/productbox.scss";
 const ProductBox = (props) => {
     const { pdata } = props;
     let labelsTypeClass = "bg-green-800";
-    switch (pdata.labels.type) {
+    /* switch (pdata.labels.type) {
         case "sale":
             labelsTypeClass = "bg-orange-800";
             break;
         case "hot":
             labelsTypeClass = "bg-blue-800";
             break;
-    }
+    } */
     return (
         <div className="productWrapper mt-7">
             <div className="thumb relative overflow-hidden">
@@ -24,13 +24,13 @@ const ProductBox = (props) => {
                     />
                 </Link>
 
-                <div className="absolute top-4 left-4">
+                {pdata.labels && <div className="absolute top-4 left-4">
                     <span
                         className={`inline-block text-center font-medium px-3 py-1 bg-green-800 text-white text-sm rounded-sm ${labelsTypeClass}`}
                     >
-                        {pdata.labels.text}
+                        {pdata.labels}
                     </span>
-                </div>
+                </div>}
 
                 <div className="actions absolute top-4 right-4 z-10">
                     <span className="flex justify-center items-center w-10 h-10 rounded-full bg-white text-gray-700 cursor-pointer hover:bg-orange-500 hover:text-white transition duration-200">

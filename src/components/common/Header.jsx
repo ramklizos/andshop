@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Header = () =>{
     return(
         <section>
@@ -21,9 +23,7 @@ const Header = () =>{
                 <div className="container max-w-screen-xl1 mx-auto px-4">
                     <div className="flex flex-wrap text-sm items-center">
                         <div className="w-1/4">
-                            <a href="#">
-                                <img src="/images/logo.png" alt="" className="w-auto" />
-                            </a>
+                            <Link to="/"><img src="/images/logo.png" alt="" className="w-auto" /></Link>
                         </div>
                         <div className="w-2/4 px-4">
                             <ul className="flex justify-between">
